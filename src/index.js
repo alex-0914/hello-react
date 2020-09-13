@@ -1,17 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+
+class LikeButton extends Component {
+  constructor() {
+    super();
+    this.state = { isLike: false };
+  }
+
+  handleClickOnLikeButton() {
+    this.setState({
+      isLike: !this.state.isLike
+    })
+  }
+
+  render() {
+    const likedText = this.props.likedText || "取消";
+    const unlikedText = this.props.unlikedText || "点赞";
+    return (
+      <button onClick={this.handleClickOnLikeButton.bind(this)}>
+        { this.state.isLike ? likedText : unlikedText }
+      </button>
+    )
+  }
+}
+class Index extends Component {
+  render() {
+    return (
+      <div>
+        <LikeButton likedText="已赞1" unlikedText="赞1"/>
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <Index/>,
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
