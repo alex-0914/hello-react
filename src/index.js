@@ -29,33 +29,105 @@ class LikeButton extends Component {
     )
   }
 }
+
+class HelloWorld extends Component {
+  constructor() {
+    super();
+  }
+
+  sayHi() {
+    alert("Hello World!");
+  }
+
+  render() {
+    return (
+      <div onClick={this.sayHi.bind(this)}>Hello World!</div>
+    )
+  }
+}
+
+// stateless Component
+// stateful Component
+const HelloWorld2 = (props) => {
+  const sayHi = (event) => alert("Hello World");
+  return (
+    <div onClick={sayHi}>ALEX, GO, GO!</div>
+  );
+}
+// class Index extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       likedText: "No",
+//       unlikedText: "Yes"
+//     }
+//   }
+
+//   handleClickOnChange() {
+//     this.setState({
+//       likedText:'Follow',
+//       unlikedText: "Unfollow"
+//     })
+//   }
+
+
+//   render() {
+//     return (
+//       <div>
+//         <LikeButton 
+//           likedText={this.state.likedText}
+//           unlikedText={this.state.unlikedText}
+//         />
+//         <div>
+//           <button onClick={this.handleClickOnChange.bind(this)}></button>
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+
+const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+
+
+// class User extends Component {
+//   render() {
+//     const { user } = this.props;
+//     return (
+//       <div>
+//           <div>Name: {user.username} </div>
+//           <div>Age: {user.age} </div>
+//           <div>Gender: {user.gender} </div>
+//           <hr/>
+//       </div>
+//     )
+//   }
+// }
+
+const User = props => {
+    const { user } = props;
+    return (
+      <div>
+        <div>Name: {user.username} </div>
+        <div>Age: {user.age} </div>
+        <div>Gender: {user.gender} </div>
+        <hr/>
+      </div>
+    )
+  }
 class Index extends Component {
   constructor() {
     super();
-    this.state = {
-      likedText: "No",
-      unlikedText: "Yes"
-    }
   }
-
-  handleClickOnChange() {
-    this.setState({
-      likedText:'Follow',
-      unlikedText: "Unfollow"
-    })
-  }
-
 
   render() {
     return (
       <div>
-        <LikeButton 
-          likedText={this.state.likedText}
-          unlikedText={this.state.unlikedText}
-        />
-        <div>
-          <button onClick={this.handleClickOnChange.bind(this)}></button>
-        </div>
+        {users.map((user, i) => <User user={user} key={i}/>)}
       </div>
     )
   }
